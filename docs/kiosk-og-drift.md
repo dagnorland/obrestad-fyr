@@ -17,13 +17,13 @@ Tidene står i `App`-funksjonen i hvert kapittel (`src/chapters/kapittel*.js`) o
 
 ## QR-koden
 
-QR-koden peker til adressen siden åpnes fra, uten `kiosk`. Den vises ikke når siden kjøres fra en fil eller fra Claude. Skal den peke et annet sted, sett `SITE_URL` i `src/shell.html`.
+QR-koden peker til `SITE_URL` i `src/shell.html`, som nå er `https://obrestad-fyr.vercel.app/`. Får løsningen eget domene, endrer du `SITE_URL` og bygger på nytt. Står `SITE_URL` tom, peker QR-koden til adressen siden åpnes fra, uten `kiosk`. Da vises den ikke når siden kjøres fra en fil eller fra Claude.
 
 ## Oppsett av skjermen
 
-1. Åpne `https://<adresse>/?kiosk=1` én gang med nett. Da lagres alt for bruk uten nett.
+1. Åpne `https://obrestad-fyr.vercel.app/?kiosk=1` én gang med nett. Da lagres alt for bruk uten nett.
 2. Start nettleseren i fullskjerm-kiosk, for eksempel Chrome:
-   `chrome --kiosk --noerrdialogs --disable-session-crashed-bubble https://<adresse>/?kiosk=1`
+   `chrome --kiosk --noerrdialogs --disable-session-crashed-bubble https://obrestad-fyr.vercel.app/?kiosk=1`
 3. Slå av skjermsparer, hvilemodus og automatiske oppdateringer som kan avbryte visningen.
 4. Legg nettleseren inn som oppstartsprogram, så skjermen kommer seg selv etter strømbrudd.
 

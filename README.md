@@ -28,6 +28,8 @@ npm run build:single   # dist-single/obrestad-fyr.html – én fil, henter bibli
 
 Koble GitHub-repoet til Vercel (Add New → Project → velg repoet). `vercel.json` forteller Vercel at den skal kjøre `npm run build` og publisere `dist/`. Hver push til `main` publiseres automatisk. Ingen zip-filer trengs.
 
+Løsningen ligger foreløpig ute på <https://obrestad-fyr.vercel.app/>. Kiosk: <https://obrestad-fyr.vercel.app/?kiosk=1>.
+
 ## Struktur
 
 ```
