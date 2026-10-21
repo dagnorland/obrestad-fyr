@@ -1,6 +1,6 @@
 # Obrestad fyr
 
-Interaktiv utstilling om Obrestad fyr på Jæren, tent i 1873. Laget for mobil (QR-kode på fyret) og for storskjermen i fyrbygningen. Norsk, tysk og engelsk. Et initiativ fra Jæren Kystlag for Hå kommune.
+Interaktiv utstilling om Obrestad fyr på Jæren, tent i 1873. Laget for mobil (QR-kode på fyret) og for storskjermen i fyrbygningen. Norsk, tysk og engelsk. Et initiativ fra Jæren Kystlag ved Bjørn Ådne Norland for Hå kommune.
 
 Tre kapitler:
 
