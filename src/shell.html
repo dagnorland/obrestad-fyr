@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obrestad fyr</title>
+<!--FONTS-->
+<style>
+:root{
+  --page:#e7eef0; --text:#0f2430; --muted:#4b6572; --line:rgba(15,36,48,.16); --accent:#9a5c06;
+  --chip:rgba(15,36,48,.07); --chip-on:#0f2430; --chip-on-text:#ffd27a; --focus:#0b6aa8;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--page:#07141c;--text:#e6eef0;--muted:#9fb6c1;--line:rgba(230,238,240,.14);--accent:#ffc35a;--chip:rgba(230,238,240,.08);--chip-on:#ffc35a;--chip-on-text:#0b1b24;--focus:#7cc4ff;color-scheme:dark}
+}
+:root[data-theme="dark"]{--page:#07141c;--text:#e6eef0;--muted:#9fb6c1;--line:rgba(230,238,240,.14);--accent:#ffc35a;--chip:rgba(230,238,240,.08);--chip-on:#ffc35a;--chip-on-text:#0b1b24;--focus:#7cc4ff;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+body{background:var(--page);color:var(--text);font-family:Barlow,"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+#root{height:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.shell{height:100%;display:grid;grid-template-rows:auto 1fr}
+.gtop{display:flex;align-items:center;gap:16px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--page);position:relative;z-index:3}
+.gbrand{all:unset;cursor:pointer;display:flex;flex-direction:column;line-height:1.05;margin-right:auto}
+.gbrand b{font-family:"IM Fell English",Georgia,serif;font-weight:400;font-size:28px}
+.gbrand span{font-family:"IM Fell English",Georgia,serif;font-style:italic;color:var(--muted);font-size:15px}
+.gbrand:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}
+.chapters{display:flex;gap:2px;align-items:center}
+.chapters button{border:0;background:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:15px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.chapters button i{font-style:normal;font-family:"IM Fell English",Georgia,serif;font-size:20px;line-height:1;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid currentColor}
+.chapters button[aria-current="page"]{color:var(--text)}
+.chapters button[aria-current="page"] i{background:var(--chip-on);color:var(--chip-on-text);border-color:transparent}
+.glangs{display:flex;gap:2px}
+.glangs button{border:1px solid transparent;background:none;padding:4px 8px;border-radius:6px;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.5px}
+.glangs button[aria-pressed="true"]{border-color:var(--line);color:var(--text)}
+@media (max-width:1000px){.chapters button span{display:none}.chapters button{padding:6px}}
+@media (max-width:640px){.gtop{gap:8px;padding:8px 10px}.gbrand b{font-size:22px}.gbrand span{display:none}}
+.gstage{position:relative;overflow:hidden;min-height:0}
+.m1,.m2,.m3{position:absolute;inset:0}
+.m1 .top,.m2 .top,.m3 .top{justify-content:center;padding:8px 12px}
+
+/* start */
+.start{position:absolute;inset:0;overflow:auto;background:#06121a;color:#e6eef0}
+.startin{min-height:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:20px;max-width:1240px;margin:0 auto;padding:30px 28px}
+.kicker{font-family:"IM Fell English",Georgia,serif;font-style:italic;font-size:22px;color:#ffc35a;margin:0 0 4px}
+.start h2{font-family:"IM Fell English",Georgia,serif;font-weight:400;font-size:88px;line-height:.95;margin:0 0 18px}
+.start .slead{font-family:"IM Fell English",Georgia,serif;font-size:21px;line-height:1.5;color:#b9cbd3;max-width:52ch;margin:0 0 26px}
+.chlist{list-style:none;margin:0;padding:0;border-top:1px solid rgba(230,238,240,.15)}
+.chlist button{all:unset;cursor:pointer;display:grid;grid-template-columns:54px 1fr;gap:4px 14px;padding:16px 4px;border-bottom:1px solid rgba(230,238,240,.15);width:100%;box-sizing:border-box}
+.chlist button:hover .ct,.chlist button:focus-visible .ct{color:#ffc35a}
+.chlist button:focus-visible{outline:3px solid #7cc4ff;outline-offset:2px;border-radius:6px}
+.chlist .cn{grid-row:1/3;font-family:"IM Fell English",Georgia,serif;font-size:44px;line-height:1;color:#ffc35a}
+.chlist .ct{font-family:"IM Fell English",Georgia,serif;font-size:26px;line-height:1.15;transition:color .2s}
+.chlist .cd{color:#9fb6c1;font-size:15.5px}
+.credit{margin:22px 0 0;color:#7f98a4;font-size:14px}
+.scene svg{width:100%;height:auto;display:block}
+.qrbig{display:flex;gap:18px;align-items:center;margin-top:24px}
+.qrbig .q{background:#fff;padding:10px;border-radius:12px;width:180px;height:180px}
+.qrbig .q svg{width:100%;height:100%}
+.qrbig p{font-family:"IM Fell English",Georgia,serif;font-size:26px;margin:0;max-width:16ch}
+@media (max-width:860px){
+  .startin{grid-template-columns:1fr;padding:22px 18px}
+  .scene{order:-1;max-width:420px;margin:0 auto;width:100%}
+  .start h2{font-size:56px}
+}
+/* kiosk */
+.kiosk-mode,.kiosk-mode *{cursor:none!important}
+.kiosk-mode .glangs{display:none}
+.qrcard{position:absolute;right:16px;bottom:16px;z-index:5;display:flex;align-items:center;gap:12px;background:rgba(6,18,26,.88);color:#e6eef0;padding:10px 14px 10px 10px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);pointer-events:none}
+.qrcard .q{background:#fff;border-radius:8px;padding:6px;width:112px;height:112px}
+.qrcard .q svg{width:100%;height:100%}
+.qrcard p{margin:0;font-family:"IM Fell English",Georgia,serif;font-size:19px;max-width:12ch;line-height:1.2}
+.qrcard.textonly{padding:12px 16px}
+/*CHAPTERCSS*/
+</style>
+</head>
+<body>
+<div id="root"></div>
+<!--LIBS-->
+<!--CHAPTERS-->
+<script>
+(function(){
+const {useState,useEffect,useRef,useCallback}=React;
+const html=htm.bind(React.createElement);
+const P=new URLSearchParams(location.search);
+const KIOSK=P.has('kiosk');
+// Sett nettstedets adresse her når løsningen ligger ute, ellers brukes adressen siden åpnes fra.
+const SITE_URL='';
+const S={
+ nb:{sub:'Tent i 1873',start:'Start',ch:['Ute på havet','Optikeren og urmakeren','Fakturaen'],
+  lead:'Et lys fra Paris som gjorde Jærkysten tryggere. Bli med om bord, møt optikeren og urmakeren, og les den originale fakturaen.',
+  list:[['Ute på havet','Se fyret fra en båt en mørk kveld, og finn ut hvor langt lyset når.'],['Optikeren og urmakeren','Menneskene og teknologien bak det presise lyset og blinket.'],['Fakturaen fra Paris','Les originalen fra 1873 med et forstørrelsesglass som oversetter.']],
+  credit:'Et initiativ fra Jæren Kystlag for Hå kommune.',qr:'Utforsk selv på mobilen',langs:'Språk'},
+ de:{sub:'Entzündet 1873',start:'Start',ch:['Auf dem Meer','Optiker und Uhrmacher','Die Rechnung'],
+  lead:'Ein Licht aus Paris, das die Küste von Jæren sicherer machte. Komm an Bord, triff den Optiker und den Uhrmacher und lies die Originalrechnung.',
+  list:[['Draußen auf dem Meer','Sieh den Leuchtturm von einem Boot an einem dunklen Abend und finde heraus, wie weit das Licht reicht.'],['Der Optiker und der Uhrmacher','Die Menschen und die Technik hinter dem präzisen Licht und Blitz.'],['Die Rechnung aus Paris','Lies das Original von 1873 mit einer Lupe, die übersetzt.']],
+  credit:'Eine Initiative von Jæren Kystlag für die Gemeinde Hå.',qr:'Selbst entdecken auf dem Handy',langs:'Sprache'},
+ en:{sub:'First lit in 1873',start:'Start',ch:['Out at sea','Optician and clockmaker','The invoice'],
+  lead:'A light from Paris that made the Jæren coast safer. Come aboard, meet the optician and the clockmaker, and read the original invoice.',
+  list:[['Out at sea','See the lighthouse from a boat on a dark evening, and find out how far the light reaches.'],['The optician and the clockmaker','The people and the technology behind the precise light and flash.'],['The invoice from Paris','Read the 1873 original with a magnifying glass that translates.']],
+  credit:'An initiative by Jæren Kystlag for Hå municipality.',qr:'Explore on your phone',langs:'Language'}
+};
+const LANGS=['nb','de','en'];
+function initLang(){const q=P.get('lang');if(LANGS.includes(q))return q;if(KIOSK)return 'nb';
+  const n=(navigator.language||'nb').toLowerCase();if(/^(nb|nn|no)/.test(n))return 'nb';if(n.startsWith('de'))return 'de';return /^(sv|da)/.test(n)?'nb':'en'}
+const qrUrl=(()=>{if(SITE_URL)return SITE_URL;if(location.protocol==='file:'||/claude|anthropic|usercontent/.test(location.hostname))return '';
+  const u=new URL(location.href);u.searchParams.delete('kiosk');u.searchParams.delete('lang');return u.toString()})();
+function QR({size}){
+  const svg=React.useMemo(()=>{if(!qrUrl||typeof qrcode==='undefined')return '';try{const q=qrcode(0,'M');q.addData(qrUrl);q.make();return q.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(e){return ''}},[]);
+  if(!svg)return null;
+  return html`<div className="q" dangerouslySetInnerHTML=${{__html:svg}}></div>`;
+}
+const gauss=(d,s)=>Math.exp(-d*d/(2*s*s));
+function Lighthouse(){
+  const beam=useRef(null),glow=useRef(null);
+  useEffect(()=>{const t0=performance.now()/1000;let r;const loop=()=>{r=requestAnimationFrame(loop);const t=performance.now()/1000-t0+24;
+    const ph=((t%30)+30)%30,d=Math.min(ph,30-ph),f=gauss(d,0.6);
+    if(beam.current)beam.current.setAttribute('transform',`rotate(${(t/90*360)%360} 250 168)`);
+    if(glow.current){glow.current.setAttribute('r',26+70*f);glow.current.style.opacity=0.45+0.55*f}};loop();return()=>cancelAnimationFrame(r)},[]);
+  const stars=React.useMemo(()=>Array.from({length:70},(_,i)=>[(i*97)%500,(i*53)%240,(i%5)*0.25+0.6]),[]);
+  return html`<svg viewBox="0 0 500 520" role="img" aria-label="Obrestad fyr">
+    <defs><radialGradient id="sg1"><stop offset="0" stopColor="#fff6d8"/><stop offset=".3" stopColor="#ffd27a" stopOpacity=".7"/><stop offset="1" stopColor="#ffb340" stopOpacity="0"/></radialGradient>
+      <linearGradient id="bm" x1="0" x2="1"><stop offset="0" stopColor="#ffd27a" stopOpacity=".55"/><stop offset="1" stopColor="#ffd27a" stopOpacity="0"/></linearGradient>
+      <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#123a50"/><stop offset="1" stopColor="#06121a"/></linearGradient></defs>
+    ${stars.map(([x,y,r],i)=>html`<circle key=${i} cx=${x} cy=${y} r=${r} fill="#dfe8ff" opacity=".7"/>`)}
+    <g ref=${beam}>${[0,120,240].map(a=>html`<path key=${a} transform=${`rotate(${a} 250 168)`} d="M250 168 L520 120 L520 216Z" fill="url(#bm)"/>`)}</g>
+    <path d="M0 420 Q120 380 200 392 L300 392 Q400 380 500 410 L500 520 L0 520Z" fill="#0b1a20"/>
+    <rect x="0" y="440" width="500" height="80" fill="url(#sea1)"/>
+    <path d="M226 392 L234 196 L266 196 L274 392Z" fill="#e6eef0"/>
+    <path d="M230 300 L270 300 L271 330 L229 330Z" fill="#b2382f"/>
+    <rect x="224" y="186" width="52" height="10" fill="#1c2226"/>
+    <rect x="232" y="152" width="36" height="34" rx="3" fill="#ffd27a"/>
+    <path d="M226 154 L274 154 L250 128Z" fill="#7a2420"/>
+    <circle ref=${glow} cx="250" cy="168" r="30" fill="url(#sg1)"/>
+    <rect x="286" y="370" width="54" height="24" fill="#1c2226"/><rect x="296" y="378" width="8" height="8" fill="#ffb75a"/>
+  </svg>`;
+}
+function Start({s,go}){
+  return html`<div className="start"><div className="startin">
+    <div>
+      <p className="kicker">${s.sub}</p>
+      <h2>Obrestad fyr</h2>
+      <p className="slead">${s.lead}</p>
+      ${KIOSK?html`<div className="qrbig"><${QR}/><p>${qrUrl?s.qr:''}</p></div>`:
+      html`<ul className="chlist">${s.list.map(([h,d],i)=>html`<li key=${i}><button onClick=${()=>go(i+1)}><span className="cn">${i+1}</span><span className="ct">${h}</span><span className="cd">${d}</span></button></li>`)}</ul>`}
+      <p className="credit">${s.credit}</p>
+    </div>
+    <div className="scene"><${Lighthouse}/></div>
+  </div></div>`;
+}
+function Shell(){
+  const [lang,setLang]=useState(initLang);const [ch,setCh]=useState(()=>{const c=+P.get('kapittel');return c>=1&&c<=3&&!KIOSK?c:0});
+  const chRef=useRef(ch);chRef.current=ch;const langRef=useRef(lang);langRef.current=lang;
+  const s=S[lang];const booted=useRef(Date.now());
+  useEffect(()=>{document.documentElement.lang=lang},[lang]);
+  useEffect(()=>{if(KIOSK){document.body.classList.add('kiosk-mode');const n=e=>e.preventDefault();document.addEventListener('contextmenu',n);return()=>document.removeEventListener('contextmenu',n)}},[]);
+  useEffect(()=>{if(!KIOSK||ch!==0)return;const to=setTimeout(()=>setCh(1),14000);return()=>clearTimeout(to)},[ch]);
+  const onDone=useCallback(()=>{const c=chRef.current;
+    if(c<3){setCh(c+1);return}
+    const next=LANGS[(LANGS.indexOf(langRef.current)+1)%3];
+    if(next==='nb'&&Date.now()-booted.current>6*3600*1000){location.reload();return}
+    setLang(next);setCh(0)},[]);
+  const go=i=>{setCh(i);if(!KIOSK){const u=new URL(location.href);if(i)u.searchParams.set('kapittel',i);else u.searchParams.delete('kapittel');history.replaceState(null,'',u)}};
+  const Mods=[null,window.OF_M1,window.OF_M2,window.OF_M3];
+  const Cur=Mods[ch];
+  return html`<div className="shell">
+    <header className="gtop">
+      <button className="gbrand" onClick=${()=>go(0)} aria-label=${s.start}><b>Obrestad fyr</b><span>${s.sub}</span></button>
+      <nav className="chapters">${s.ch.map((n,i)=>html`<button key=${i} aria-current=${ch===i+1?'page':undefined} onClick=${()=>go(i+1)} title=${n}><i>${i+1}</i><span>${n}</span></button>`)}</nav>
+      <div className="glangs" role="group" aria-label=${s.langs}>${[['nb','NO'],['de','DE'],['en','EN']].map(([k,l])=>html`<button key=${k} aria-pressed=${lang===k} onClick=${()=>setLang(k)}>${l}</button>`)}</div>
+    </header>
+    <main className="gstage">
+      ${ch===0?html`<${Start} s=${s} go=${go}/>`:html`<div className=${'m'+ch} key=${ch}><${Cur} lang=${lang} kiosk=${KIOSK} onDone=${onDone}/></div>`}
+      ${KIOSK&&ch!==0&&qrUrl&&html`<div className="qrcard"><${QR}/><p>${s.qr}</p></div>`}
+    </main>
+  </div>`;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${Shell}/>`);
+/*SW*/
+})();
+</script>
+</body>
+</html>

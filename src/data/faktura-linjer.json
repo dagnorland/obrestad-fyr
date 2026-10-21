@@ -1,0 +1,608 @@
+[
+ {
+  "id": "head",
+  "box": [
+   110,
+   180,
+   450,
+   390
+  ],
+  "fr": "HENRY-LEPAUTE. Constructeur de phares lenticulaires. 6, rue de La Fayette",
+  "nb": "HENRY-LEPAUTE. Bygger av linsefyr. Rue La Fayette 6, Paris",
+  "de": "HENRY-LEPAUTE. Hersteller von Linsenleuchttürmen. Rue La Fayette 6, Paris",
+  "en": "HENRY-LEPAUTE. Builder of lens lighthouses. 6 Rue La Fayette, Paris",
+  "n_nb": "Det trykte brevhodet til firmaet som laget både linsen og urverket.",
+  "n_de": "Der gedruckte Briefkopf der Firma, die Linse und Uhrwerk baute.",
+  "n_en": "The printed letterhead of the firm that made both the lens and the clockwork."
+ },
+ {
+  "id": "kingdom",
+  "box": [
+   590,
+   185,
+   1050,
+   255
+  ],
+  "fr": "Royaume de Norwège",
+  "nb": "Kongeriket Norge",
+  "de": "Königreich Norwegen",
+  "en": "Kingdom of Norway",
+  "n_nb": "Kunden var den norske stat, ved fyrvesenet.",
+  "n_de": "Kunde war der norwegische Staat, vertreten durch das Leuchtfeuerwesen.",
+  "n_en": "The customer was the Norwegian state, through its lighthouse service."
+ },
+ {
+  "id": "phare",
+  "box": [
+   170,
+   455,
+   370,
+   545
+  ],
+  "fr": "Phare d’Obrestadt",
+  "nb": "Obrestad fyr",
+  "de": "Leuchtturm Obrestad",
+  "en": "Obrestad lighthouse",
+  "n_nb": "Franskmennene skrev navnet med «dt» på slutten.",
+  "n_de": "Die Franzosen schrieben den Namen mit „dt“ am Ende.",
+  "n_en": "The French spelled the name with “dt” at the end."
+ },
+ {
+  "id": "memoire",
+  "box": [
+   470,
+   360,
+   1245,
+   475
+  ],
+  "fr": "Mémoire de la fourniture d’un appareil de 3me ordre à feu fixe, éclairant 216°, varié par des éclats de 30 en 30 secondes, destiné au Phare d’Obrestadt.",
+  "nb": "Regning for levering av et apparat av 3. orden med fast lys, som lyser over 216° og har blink hvert 30. sekund, til Obrestad fyr.",
+  "de": "Rechnung über die Lieferung eines Apparats 3. Ordnung mit Festfeuer, das über 216° leuchtet, mit Blitzen alle 30 Sekunden, für den Leuchtturm Obrestad.",
+  "en": "Invoice for the supply of a 3rd-order apparatus with a fixed light shining over 216°, with a flash every 30 seconds, for Obrestad lighthouse.",
+  "n_nb": "Her står fyrets kjennetegn: fast lys med blink hvert 30. sekund. 216° betyr at fyret lyser ut over havet, ikke inn mot land.",
+  "n_de": "Hier steht die Kennung: Festfeuer mit Blitz alle 30 Sekunden. 216° heißt, dass der Turm aufs Meer leuchtet, nicht zum Land.",
+  "n_en": "Here is the light’s signature: fixed light with a flash every 30 seconds. 216° means it shines out to sea, not towards land."
+ },
+ {
+  "id": "par",
+  "box": [
+   470,
+   485,
+   1245,
+   565
+  ],
+  "fr": "Par Henry-Lepaute, constructeur de phares, demeurant à Paris, rue de La Fayette n° 6.",
+  "nb": "Fra Henry-Lepaute, fyrbygger, Rue La Fayette nr. 6 i Paris.",
+  "de": "Von Henry-Lepaute, Leuchtturmbauer, Rue La Fayette Nr. 6 in Paris.",
+  "en": "From Henry-Lepaute, lighthouse builder, No. 6 Rue La Fayette, Paris."
+ },
+ {
+  "id": "appareil",
+  "box": [
+   315,
+   635,
+   500,
+   675
+  ],
+  "fr": "Appareil",
+  "nb": "Apparatet",
+  "de": "Der Apparat",
+  "en": "The apparatus"
+ },
+ {
+  "id": "l1",
+  "box": [
+   250,
+   672,
+   1085,
+   702
+  ],
+  "fr": "3 Panneaux cylindriques de la coupole catadioptrique",
+  "p": 1903.5,
+  "nb": "3 sylindriske paneler til den katadioptriske kuppelen",
+  "de": "3 zylindrische Paneele für die katadioptrische Kuppel",
+  "en": "3 cylindrical panels for the catadioptric dome",
+  "n_nb": "Kuppelen er den øvre delen med prismer. Katadioptrisk betyr at glasset både bryter og speiler lyset.",
+  "n_de": "Die Kuppel ist der obere Teil mit Prismen. Katadioptrisch heißt: Das Glas bricht und spiegelt das Licht.",
+  "n_en": "The dome is the upper part with prisms. Catadioptric means the glass both bends and reflects the light."
+ },
+ {
+  "id": "l2",
+  "box": [
+   250,
+   702,
+   1085,
+   760
+  ],
+  "fr": "3 Panneaux cylindriques du tambour dioptrique associés aux 5 prismes de la couronne inférieure",
+  "p": 3010.5,
+  "nb": "3 sylindriske paneler til den dioptriske trommelen, sammen med de 5 prismene i den nedre kransen",
+  "de": "3 zylindrische Paneele der dioptrischen Trommel, mit den 5 Prismen des unteren Kranzes",
+  "en": "3 cylindrical panels for the dioptric drum, with the 5 prisms of the lower ring",
+  "n_nb": "Trommelen er linsens midtbelte, som bryter lyset til en flat stråle. Tre paneler dekket trolig 72° hver, til sammen 216°.",
+  "n_de": "Die Trommel ist der Mittelgürtel der Linse, der das Licht zu einem flachen Strahl bricht. Drei Paneele deckten wohl je 72°, zusammen 216°.",
+  "n_en": "The drum is the lens’s middle belt, bending the light into a flat beam. Three panels probably covered 72° each, 216° in all."
+ },
+ {
+  "id": "l3",
+  "box": [
+   250,
+   760,
+   1085,
+   790
+  ],
+  "fr": "2 Panneaux de réflecteur catadioptrique",
+  "p": 1000,
+  "nb": "2 paneler til den katadioptriske reflektoren",
+  "de": "2 Paneele des katadioptrischen Reflektors",
+  "en": "2 panels for the catadioptric reflector",
+  "n_nb": "Reflektoren sto mot land og sendte lyset tilbake mot havet.",
+  "n_de": "Der Reflektor stand zur Landseite und warf das Licht zurück aufs Meer.",
+  "n_en": "The reflector faced land and sent the light back out to sea."
+ },
+ {
+  "id": "l4",
+  "box": [
+   250,
+   790,
+   1085,
+   845
+  ],
+  "fr": "3 Lentilles verticales à 7 éléments, correspondant à la hauteur du tambour",
+  "p": 1575,
+  "nb": "3 vertikale linser med 7 elementer, like høye som trommelen",
+  "de": "3 senkrechte Linsen mit 7 Elementen, so hoch wie die Trommel",
+  "en": "3 vertical lenses of 7 elements, the height of the drum",
+  "n_nb": "Dette er blinkpanelene som gikk rundt utenpå og ga blinket. Tre stykker: med blink hvert 30. sekund gikk de trolig én runde på 90 sekunder.",
+  "n_de": "Das sind die Blitzpaneele, die außen herumliefen. Drei Stück: Bei einem Blitz alle 30 Sekunden drehten sie sich wohl einmal in 90 Sekunden.",
+  "n_en": "These are the flash panels that turned around the outside. Three of them: with a flash every 30 seconds they probably turned once every 90 seconds."
+ },
+ {
+  "id": "l5",
+  "box": [
+   250,
+   845,
+   1085,
+   898
+  ],
+  "fr": "3 Lentilles verticales à 7 éléments, correspondant à la couronne inférieure, de 0,24 de hauteur",
+  "p": 570,
+  "nb": "3 vertikale linser med 7 elementer for den nedre kransen, 0,24 m høye",
+  "de": "3 senkrechte Linsen mit 7 Elementen für den unteren Kranz, 0,24 m hoch",
+  "en": "3 vertical lenses of 7 elements for the lower ring, 0.24 m high"
+ },
+ {
+  "id": "l6",
+  "box": [
+   250,
+   898,
+   1085,
+   962
+  ],
+  "fr": "3 Lentilles verticales correspondant aux 6 premiers prismes de la coupole supérieure, de 0,42 de hauteur",
+  "p": 1005,
+  "nb": "3 vertikale linser for de 6 første prismene i den øvre kuppelen, 0,42 m høye",
+  "de": "3 senkrechte Linsen für die ersten 6 Prismen der oberen Kuppel, 0,42 m hoch",
+  "en": "3 vertical lenses for the first 6 prisms of the upper dome, 0.42 m high"
+ },
+ {
+  "id": "l7",
+  "box": [
+   300,
+   962,
+   1085,
+   1015
+  ],
+  "fr": "Armature fixe et mobile, nouveau modèle, avec réflecteur à portière",
+  "p": 3250,
+  "nb": "Fast og roterende ramme, ny modell, med reflektor som åpnes som en dør",
+  "de": "Feste und drehbare Fassung, neues Modell, mit Reflektor, der sich wie eine Tür öffnet",
+  "en": "Fixed and rotating frame, new model, with a reflector that opens like a door",
+  "n_nb": "Rammen holdt glasset på plass. Reflektoren kunne trolig åpnes så fyrvokteren kom til lampen.",
+  "n_de": "Die Fassung hielt das Glas. Der Reflektor ließ sich wohl öffnen, damit der Wärter an die Lampe kam.",
+  "n_en": "The frame held the glass. The reflector could probably be opened so the keeper could reach the lamp."
+ },
+ {
+  "id": "l8",
+  "box": [
+   300,
+   1015,
+   1085,
+   1047
+  ],
+  "fr": "Machine de rotation",
+  "p": 2250,
+  "nb": "Rotasjonsmaskin",
+  "de": "Drehmaschine",
+  "en": "Rotation machine",
+  "n_nb": "Urverket med lodd og regulator som drev blinkpanelene rundt. Dette er urmakerens bidrag.",
+  "n_de": "Das Uhrwerk mit Gewicht und Regler, das die Blitzpaneele drehte. Der Beitrag des Uhrmachers.",
+  "n_en": "The clockwork with weight and regulator that turned the flash panels. The clockmaker’s contribution."
+ },
+ {
+  "id": "l9",
+  "box": [
+   250,
+   1047,
+   1085,
+   1170
+  ],
+  "fr": "3 Lampes à niveau variable en hélice, fixées au-dessus du réflecteur, pour becs à 3 mèches, 2 obturateurs à engrenages, colonne à jour pour porter le bec, robinets pour la vidange et l’emplissage, accessoires, etc.",
+  "p": 1000,
+  "nb": "3 lamper med variabelt oljenivå, festet over reflektoren, for brennere med 3 veker. 2 lukkere med tannhjul, åpen søyle som bærer brenneren, kraner for tømming og påfylling, tilbehør osv.",
+  "de": "3 Lampen mit veränderlichem Ölstand, über dem Reflektor befestigt, für Brenner mit 3 Dochten. 2 Verschlüsse mit Zahnrädern, offene Säule für den Brenner, Hähne zum Entleeren und Füllen, Zubehör usw.",
+  "en": "3 lamps with variable oil level, fixed above the reflector, for 3-wick burners. 2 geared shutters, open column to carry the burner, taps for emptying and filling, accessories, etc.",
+  "n_nb": "Ordet «en hélice» (spiralform) er usikkert lest.",
+  "n_de": "Das Wort „en hélice“ (spiralförmig) ist unsicher gelesen.",
+  "n_en": "The words “en hélice” (spiral-shaped) are an uncertain reading."
+ },
+ {
+  "id": "l10",
+  "box": [
+   250,
+   1170,
+   1085,
+   1242
+  ],
+  "fr": "6 Becs tronc-coniques Henry-Lepaute à niveau constant et à 3 mèches",
+  "p": 360,
+  "nb": "6 kjegleformede Henry-Lepaute-brennere med konstant nivå og 3 veker",
+  "de": "6 kegelstumpförmige Henry-Lepaute-Brenner mit konstantem Ölstand und 3 Dochten",
+  "en": "6 truncated-cone Henry-Lepaute burners with constant level and 3 wicks",
+  "n_nb": "Konstant oljenivå holdt flammen i ro, så den ble stående i brennpunktet hele natten.",
+  "n_de": "Der konstante Ölstand hielt die Flamme ruhig, sodass sie die ganze Nacht im Brennpunkt stand.",
+  "n_en": "A constant oil level kept the flame steady, so it stayed at the focal point all night."
+ },
+ {
+  "id": "total1",
+  "box": [
+   510,
+   1265,
+   1255,
+   1312
+  ],
+  "fr": "Total pour l’appareil",
+  "p": 15924,
+  "nb": "Sum for apparatet",
+  "de": "Summe für den Apparat",
+  "en": "Total for the apparatus"
+ },
+ {
+  "id": "acc",
+  "box": [
+   295,
+   1350,
+   670,
+   1392
+  ],
+  "fr": "Fournitures accessoires",
+  "nb": "Tilbehør",
+  "de": "Zubehör",
+  "en": "Accessories"
+ },
+ {
+  "id": "a1",
+  "box": [
+   205,
+   1392,
+   1085,
+   1422
+  ],
+  "fr": "150 Cheminées de cristal pour becs à 3 mèches",
+  "p": 270,
+  "nb": "150 lampeglass av krystall til brennere med 3 veker",
+  "de": "150 Lampenzylinder aus Kristall für Brenner mit 3 Dochten",
+  "en": "150 crystal lamp chimneys for 3-wick burners",
+  "n_nb": "Lampeglassene kunne sprekke av varmen. Derfor fulgte det med 150 i reserve.",
+  "n_de": "Die Zylinder konnten in der Hitze springen. Darum kamen 150 als Reserve mit.",
+  "n_en": "The chimneys could crack in the heat, so 150 spares were included."
+ },
+ {
+  "id": "a2",
+  "box": [
+   205,
+   1422,
+   1085,
+   1450
+  ],
+  "fr": "40 Mètres de mèches de chaque numéro",
+  "p": 128,
+  "nb": "40 meter veke i hver størrelse",
+  "de": "40 Meter Docht jeder Größe",
+  "en": "40 metres of wick in each size"
+ },
+ {
+  "id": "a3",
+  "box": [
+   205,
+   1450,
+   1085,
+   1482
+  ],
+  "fr": "1 Paquet de mèches pour lanterne d’allumeur",
+  "p": 2,
+  "nb": "1 pakke veker til tennlykten",
+  "de": "1 Paket Dochte für die Anzündlaterne",
+  "en": "1 packet of wicks for the lighting lantern"
+ },
+ {
+  "id": "rep1",
+  "box": [
+   555,
+   1497,
+   1255,
+   1560
+  ],
+  "fr": "À reporter",
+  "p": 400,
+  "extra": "15 924",
+  "nb": "Overføres til neste side",
+  "de": "Übertrag auf die nächste Seite",
+  "en": "Carried forward",
+  "n_nb": "Neste side vi har, starter med 645,30 franc i tilbehør. Det tyder på at én side mangler mellom disse to.",
+  "n_de": "Die nächste vorhandene Seite beginnt mit 645,30 Franc Zubehör. Vermutlich fehlt eine Seite dazwischen.",
+  "n_en": "The next page we have starts at 645.30 francs of accessories. A page seems to be missing in between."
+ },
+ {
+  "id": "rep2",
+  "box": [
+   1540,
+   155,
+   2445,
+   200
+  ],
+  "fr": "Report",
+  "p": 645.3,
+  "extra": "15 924",
+  "nb": "Overført fra forrige side",
+  "de": "Übertrag von der vorigen Seite",
+  "en": "Brought forward",
+  "n_nb": "645,30 her, men 400 nederst på forrige side. Én side ser ut til å mangle.",
+  "n_de": "Hier 645,30, auf der vorigen Seite unten 400. Eine Seite scheint zu fehlen.",
+  "n_en": "645.30 here, but 400 at the foot of the previous page. A page seems to be missing."
+ },
+ {
+  "id": "acc2",
+  "box": [
+   1495,
+   222,
+   1890,
+   264
+  ],
+  "fr": "Fournitures accessoires (suite)",
+  "nb": "Tilbehør (fortsatt)",
+  "de": "Zubehör (Fortsetzung)",
+  "en": "Accessories (continued)"
+ },
+ {
+  "id": "r1",
+  "box": [
+   1440,
+   264,
+   2215,
+   291
+  ],
+  "fr": "2 Kilos de chiffons blancs",
+  "p": 2.5,
+  "nb": "2 kilo hvite filler",
+  "de": "2 Kilo weiße Lappen",
+  "en": "2 kilos of white rags",
+  "n_nb": "Til å pusse glasset rent hver dag.",
+  "n_de": "Zum täglichen Putzen des Glases.",
+  "n_en": "For cleaning the glass every day."
+ },
+ {
+  "id": "r2",
+  "box": [
+   1440,
+   291,
+   2215,
+   318
+  ],
+  "fr": "5 Kilos de blanc d’Espagne",
+  "p": 0.5,
+  "nb": "5 kilo krittpulver («spansk hvitt»)",
+  "de": "5 Kilo Schlämmkreide („spanisches Weiß“)",
+  "en": "5 kilos of whiting (“Spanish white”)",
+  "n_nb": "Et fint pussemiddel for glass og messing.",
+  "n_de": "Ein feines Putzmittel für Glas und Messing.",
+  "n_en": "A fine polish for glass and brass."
+ },
+ {
+  "id": "r3",
+  "box": [
+   1440,
+   318,
+   2215,
+   345
+  ],
+  "fr": "1 Boîte double pour le rouge à polir",
+  "p": 5.25,
+  "nb": "1 dobbel boks til poleringsrødt",
+  "de": "1 Doppeldose für Polierrot",
+  "en": "1 double box for polishing rouge"
+ },
+ {
+  "id": "r4",
+  "box": [
+   1440,
+   345,
+   2215,
+   372
+  ],
+  "fr": "1 Boîte simple pour le blanc",
+  "p": 3.75,
+  "nb": "1 enkel boks til krittpulveret",
+  "de": "1 einfache Dose für die Kreide",
+  "en": "1 single box for the whiting"
+ },
+ {
+  "id": "r5",
+  "box": [
+   1440,
+   372,
+   2215,
+   400
+  ],
+  "fr": "1 Double décimètre",
+  "p": 0.95,
+  "nb": "1 linjal på 20 cm",
+  "de": "1 Lineal von 20 cm",
+  "en": "1 twenty-centimetre rule"
+ },
+ {
+  "id": "r6",
+  "box": [
+   1440,
+   400,
+   2215,
+   428
+  ],
+  "fr": "1 Mètre pliant",
+  "p": 1.25,
+  "nb": "1 sammenleggbar meterstokk",
+  "de": "1 Zollstock",
+  "en": "1 folding metre rule"
+ },
+ {
+  "id": "r7",
+  "box": [
+   1440,
+   428,
+   2215,
+   456
+  ],
+  "fr": "1 Bouchon de centrage",
+  "p": 0.3,
+  "nb": "1 sentreringsplugg",
+  "de": "1 Zentrierstopfen",
+  "en": "1 centring plug",
+  "n_nb": "Trolig brukt til å plassere brenneren nøyaktig i brennpunktet. Optikerens presisjon i en liten plugg.",
+  "n_de": "Wohl zum genauen Ausrichten des Brenners im Brennpunkt. Optikerpräzision in einem kleinen Stopfen.",
+  "n_en": "Probably used to place the burner exactly at the focal point. The optician’s precision in a little plug."
+ },
+ {
+  "id": "r8",
+  "box": [
+   1440,
+   456,
+   2215,
+   484
+  ],
+  "fr": "2 Rideaux en coutil pour l’appareil",
+  "p": 30,
+  "nb": "2 forheng av kraftig lerret til apparatet",
+  "de": "2 Vorhänge aus festem Drell für den Apparat",
+  "en": "2 heavy canvas curtains for the apparatus",
+  "n_nb": "Om dagen ble linsen dekket til. Ellers kunne sola samles i brennpunktet og skade lampen.",
+  "n_de": "Tagsüber wurde die Linse verhängt. Sonst konnte sich die Sonne im Brennpunkt sammeln und die Lampe beschädigen.",
+  "n_en": "By day the lens was covered. Otherwise the sun could focus at the focal point and damage the lamp."
+ },
+ {
+  "id": "r9",
+  "box": [
+   1440,
+   484,
+   2215,
+   512
+  ],
+  "fr": "2 Boîtes pour les essais de schiste",
+  "p": 90,
+  "nb": "2 kasser for prøving av skiferolje",
+  "de": "2 Kästen zum Prüfen von Schieferöl",
+  "en": "2 boxes for testing shale oil",
+  "n_nb": "Skiferolje var en mineralolje som ble brukt som lampebrensel.",
+  "n_de": "Schieferöl war ein Mineralöl, das als Lampenbrennstoff diente.",
+  "n_en": "Shale oil was a mineral oil used as lamp fuel."
+ },
+ {
+  "id": "tot2",
+  "box": [
+   1680,
+   525,
+   2465,
+   575
+  ],
+  "fr": "Total des fournitures accessoires",
+  "p": 779.8,
+  "nb": "Sum tilbehør",
+  "de": "Summe Zubehör",
+  "en": "Total accessories"
+ },
+ {
+  "id": "emb",
+  "box": [
+   1520,
+   580,
+   2465,
+   632
+  ],
+  "fr": "Emballage de toute la fourniture",
+  "p": 695,
+  "nb": "Pakking av hele leveransen",
+  "de": "Verpackung der gesamten Lieferung",
+  "en": "Packing of the whole delivery",
+  "n_nb": "Glass som skulle fra Paris til Jæren, trengte solid pakking.",
+  "n_de": "Glas auf dem Weg von Paris nach Jæren brauchte eine solide Verpackung.",
+  "n_en": "Glass travelling from Paris to Jæren needed solid packing."
+ },
+ {
+  "id": "val",
+  "box": [
+   1690,
+   636,
+   2465,
+   695
+  ],
+  "fr": "Valeur totale de la fourniture",
+  "p": 17398.8,
+  "nb": "Total verdi av leveransen",
+  "de": "Gesamtwert der Lieferung",
+  "en": "Total value of the delivery"
+ },
+ {
+  "id": "cert",
+  "box": [
+   1470,
+   795,
+   2565,
+   935
+  ],
+  "fr": "Certifié véritable le présent mémoire s’élevant à la somme de dix-sept mille trois cent quatre-vingt-dix-huit francs quatre-vingts centimes.",
+  "nb": "Denne regningen bekreftes riktig, på til sammen sytten tusen tre hundre og nittiåtte franc og åtti centimes.",
+  "de": "Die Richtigkeit dieser Rechnung wird bestätigt, über insgesamt siebzehntausenddreihundertachtundneunzig Franc und achtzig Centimes.",
+  "en": "This invoice is certified correct, amounting to seventeen thousand three hundred and ninety-eight francs and eighty centimes.",
+  "n_nb": "På fransk heter 80 «fire-tjue» og 98 «fire-tjue-ti-åtte».",
+  "n_de": "Auf Französisch heißt 80 „vier-zwanzig“ und 98 „vier-zwanzig-zehn-acht“.",
+  "n_en": "In French, 80 is “four-twenties” and 98 is “four-twenties-ten-eight”."
+ },
+ {
+  "id": "date",
+  "box": [
+   1525,
+   945,
+   1915,
+   1002
+  ],
+  "fr": "Paris le 31 août 1873",
+  "nb": "Paris, 31. august 1873",
+  "de": "Paris, 31. August 1873",
+  "en": "Paris, 31 August 1873"
+ },
+ {
+  "id": "sig",
+  "box": [
+   1830,
+   1000,
+   2400,
+   1105
+  ],
+  "fr": "Henry-Lepaute",
+  "nb": "Underskrift: Henry-Lepaute",
+  "de": "Unterschrift: Henry-Lepaute",
+  "en": "Signed: Henry-Lepaute",
+  "n_nb": "Firmaets underskrift. På denne tiden ble firmaet ledet av brødrene Léon (optikken) og Paul (urverkene).",
+  "n_de": "Die Unterschrift der Firma. Damals leiteten die Brüder Léon (Optik) und Paul (Uhrwerke) das Haus.",
+  "n_en": "The firm’s signature. At the time it was run by the brothers Léon (optics) and Paul (clockworks)."
+ }
+]

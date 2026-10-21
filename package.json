@@ -1,0 +1,22 @@
+{
+  "name": "obrestad-fyr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interaktiv utstilling om Obrestad fyr (1873) – mobil og storskjerm, norsk, tysk og engelsk.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:single": "node build.mjs --single",
+    "start": "npm run build && npx --yes serve dist -l 5173"
+  },
+  "dependencies": {
+    "@fontsource/barlow": "5.2.5",
+    "@fontsource/im-fell-english": "5.2.5",
+    "htm": "3.1.1",
+    "qrcode-generator": "1.4.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.128.0"
+  },
+  "engines": { "node": ">=18" }
+}
