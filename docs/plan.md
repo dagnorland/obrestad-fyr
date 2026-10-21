@@ -140,6 +140,7 @@ Hele løsningen er anslått til 18–29 dagsverk for én utvikler som jobber sam
 | 3. Fakturaen | Lupe med oversettelse og forklaringer | 2–3 | Faktura-modulen |
 | 4. Samling og storskjerm | Startskjerm, fyrvokterbevis, kiosk-modus, test med besøkende | 3–5 | Komplett løsning |
 | 5. Drift og språk | Hosting, QR-skilt, oversettelse til tysk og engelsk | 2–4 | Løsningen i drift på fyret |
+| 6. Senere: det originale fyret | Gjøre fyret mer likt det originale fra 1873, ut fra kildebildene | – | Tas ikke nå |
 
 Båtscenen lages i 3D med bølger og vær. Den alene tar 4–5 dager og er det største usikkerhetspunktet.
 
