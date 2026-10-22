@@ -119,7 +119,7 @@ function Lighthouse(){
   const beam=useRef(null),glow=useRef(null);
   useEffect(()=>{const t0=performance.now()/1000;let r;const loop=()=>{r=requestAnimationFrame(loop);const t=performance.now()/1000-t0+24;
     const ph=((t%30)+30)%30,d=Math.min(ph,30-ph),f=gauss(d,0.6);
-    if(beam.current)beam.current.setAttribute('transform',`rotate(${(t/90*360)%360} 250 168)`);
+    if(beam.current)beam.current.setAttribute('transform',`rotate(${(t/90*360)%360} 200 250)`);
     if(glow.current){glow.current.setAttribute('r',26+70*f);glow.current.style.opacity=0.45+0.55*f}};loop();return()=>cancelAnimationFrame(r)},[]);
   const stars=React.useMemo(()=>Array.from({length:70},(_,i)=>[(i*97)%500,(i*53)%240,(i%5)*0.25+0.6]),[]);
   return html`<svg viewBox="0 0 500 520" role="img" aria-label="Obrestad fyr">
@@ -127,16 +127,31 @@ function Lighthouse(){
       <linearGradient id="bm" x1="0" x2="1"><stop offset="0" stopColor="#ffd27a" stopOpacity=".55"/><stop offset="1" stopColor="#ffd27a" stopOpacity="0"/></linearGradient>
       <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#123a50"/><stop offset="1" stopColor="#06121a"/></linearGradient></defs>
     ${stars.map(([x,y,r],i)=>html`<circle key=${i} cx=${x} cy=${y} r=${r} fill="#dfe8ff" opacity=".7"/>`)}
-    <g ref=${beam}>${[0,120,240].map(a=>html`<path key=${a} transform=${`rotate(${a} 250 168)`} d="M250 168 L520 120 L520 216Z" fill="url(#bm)"/>`)}</g>
+    <g ref=${beam}>${[0,120,240].map(a=>html`<path key=${a} transform=${`rotate(${a} 200 250)`} d="M200 250 L520 202 L520 298Z" fill="url(#bm)"/>`)}</g>
     <path d="M0 420 Q120 380 200 392 L300 392 Q400 380 500 410 L500 520 L0 520Z" fill="#0b1a20"/>
     <rect x="0" y="440" width="500" height="80" fill="url(#sea1)"/>
-    <path d="M226 392 L234 196 L266 196 L274 392Z" fill="#e6eef0"/>
-    <path d="M230 300 L270 300 L271 330 L229 330Z" fill="#b2382f"/>
-    <rect x="224" y="186" width="52" height="10" fill="#1c2226"/>
-    <rect x="232" y="152" width="36" height="34" rx="3" fill="#ffd27a"/>
-    <path d="M226 154 L274 154 L250 128Z" fill="#7a2420"/>
-    <circle ref=${glow} cx="250" cy="168" r="30" fill="url(#sg1)"/>
-    <rect x="286" y="370" width="54" height="24" fill="#1c2226"/><rect x="296" y="378" width="8" height="8" fill="#ffb75a"/>
+    <line x1="452" y1="392" x2="452" y2="236" stroke="#3a464c" strokeWidth="2"/>
+    <path d="M222 330 L262 282 L428 282 L452 330Z" fill="#141a1e"/>
+    <path d="M222 330 L262 282 L302 330Z" fill="#1c2226"/>
+    <path d="M220 332 L262 280 L304 332" fill="none" stroke="#5a666c" strokeWidth="3"/>
+    <rect x="300" y="262" width="12" height="24" fill="#141a1e"/><rect x="364" y="262" width="16" height="24" fill="#141a1e"/>
+    <rect x="226" y="330" width="218" height="62" fill="#1c2226"/>
+    <rect x="338" y="346" width="14" height="22" fill="#ffb75a"/><rect x="398" y="346" width="14" height="22" fill="#ffb75a"/>
+    <path d="M344 346 L344 368 M338 357 L352 357 M404 346 L404 368 M398 357 L412 357" stroke="#1c2226" strokeWidth="1.5"/>
+    <path d="M176 392 L176 304 L224 304 L224 392Z" fill="#c9cfd1"/>
+    <path d="M176 336 L224 336 M176 368 L224 368" stroke="#a9b0b3" strokeWidth="1.2"/>
+    <path d="M176 304 L176 284 L224 284 L224 304Z" fill="#2a3236"/>
+    <path d="M168 284 L232 284 L224 296 L176 296Z" fill="#1c2226"/>
+    <rect x="166" y="278" width="68" height="6" fill="#1c2226"/>
+    <path d="M168 278 L168 262 L232 262 L232 278 M168 266 L232 266 M184 262 L184 278 M216 262 L216 278" fill="none" stroke="#5a666c" strokeWidth="1.4"/>
+    <path d="M182 228 Q177 251 182 274 L218 274 Q223 251 218 228Z" fill="#ffd27a"/>
+    <path d="M191 229 Q189 251 191 273 M200 228 L200 274 M209 229 Q211 251 209 273 M180 251 L220 251" fill="none" stroke="#2a3236" strokeWidth="1.6"/>
+    <path d="M176 230 Q200 204 224 230Z" fill="#3e4a50"/>
+    <rect x="194" y="166" width="12" height="40" fill="#3e4a50"/>
+    <circle cx="200" cy="160" r="8" fill="#3e4a50"/>
+    <line x1="200" y1="152" x2="200" y2="128" stroke="#5a666c" strokeWidth="1.6"/>
+    <circle ref=${glow} cx="200" cy="250" r="30" fill="url(#sg1)"/>
+    <path d="M130 392 L130 378 Q150 372 170 378 L170 392Z M232 392 L232 380 Q300 372 360 380 L470 380 L470 392Z" fill="#0f171b"/>
   </svg>`;
 }
 function Start({s,go}){

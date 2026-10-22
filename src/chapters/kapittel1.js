@@ -163,7 +163,7 @@ function createScene(host,state){
   const moon=new THREE.DirectionalLight(0xa9c4e0,0.75);moon.position.set(-520,170,-900);scene.add(moon);
   const moonS=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(),color:0xcfe0ff,fog:false,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
   moonS.position.set(-520,170,-900).normalize().multiplyScalar(1250);moonS.scale.set(70,70,1);scene.add(moonS);
-  const LH=new THREE.Vector3(0,34,-420);
+  const LH=new THREE.Vector3(0,28,-420);
   const lhLight=new THREE.PointLight(0xffc77a,1,0,1);lhLight.position.copy(LH);scene.add(lhLight);
 
   // hav
@@ -182,18 +182,41 @@ function createScene(host,state){
   shape.lineTo(1600,-2);shape.lineTo(-1600,-2);
   const land=new THREE.Mesh(new THREE.ExtrudeGeometry(shape,{depth:60,bevelEnabled:false}),new THREE.MeshLambertMaterial({color:0x0a1216}));
   land.position.z=-470;scene.add(land);
-  // tårn
-  const tower=new THREE.Group();tower.position.set(LH.x,0,LH.z);scene.add(tower);
-  const wall=new THREE.MeshLambertMaterial({color:0x8a9196,emissive:0x111417});
-  const t1=new THREE.Mesh(new THREE.CylinderGeometry(2.4,3.4,29,16),wall);t1.position.y=14.5+6;tower.add(t1);
-  const band=new THREE.Mesh(new THREE.CylinderGeometry(2.75,2.95,4,16),new THREE.MeshLambertMaterial({color:0x7a2420,emissive:0x1a0606}));band.position.y=24;tower.add(band);
-  const gal=new THREE.Mesh(new THREE.CylinderGeometry(3.4,3.4,0.6,16),new THREE.MeshLambertMaterial({color:0x1a1e22}));gal.position.y=35.6;tower.add(gal);
+  // tårn: det originale fra 1873, lavt steintårn inntil gavlen på boligen (mål anslått fra fotografiene, forstørret 1,8×)
+  const tower=new THREE.Group();tower.position.set(LH.x,6,LH.z);tower.scale.setScalar(1.8);scene.add(tower);
+  const add=(geo,mat,x,y,z)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);tower.add(m);return m};
+  const wall=new THREE.MeshLambertMaterial({color:0x9aa2a6,emissive:0x15191b});
+  const iron=new THREE.MeshLambertMaterial({color:0x2a3236,emissive:0x0a0c0e});
+  const dark=new THREE.MeshLambertMaterial({color:0x1c2226});
+  add(new THREE.CylinderGeometry(2.6,2.7,9,20),wall,0,4.5,0);
+  add(new THREE.CylinderGeometry(2.5,2.6,2,20),iron,0,10,0);
+  add(new THREE.CylinderGeometry(3.4,2.5,0.8,20),iron,0,10.8,0);
+  add(new THREE.CylinderGeometry(3.4,3.4,0.25,20),iron,0,11.3,0);
+  const rail=add(new THREE.TorusGeometry(3.3,0.05,4,28),iron,0,12.4,0);rail.rotation.x=Math.PI/2;
+  for(let k=0;k<10;k++){const a=k/10*Math.PI*2;add(new THREE.CylinderGeometry(0.05,0.05,1,4),iron,3.3*Math.cos(a),11.9,3.3*Math.sin(a))}
+  // avrundet glassparti med sprosser
   const lanternMat=new THREE.MeshBasicMaterial({color:0xffd88a});
-  const lan=new THREE.Mesh(new THREE.CylinderGeometry(2.2,2.2,3.4,16),lanternMat);lan.position.y=37.6;tower.add(lan);
-  const roof=new THREE.Mesh(new THREE.ConeGeometry(2.8,2.6,16),new THREE.MeshLambertMaterial({color:0x2a0f0d}));roof.position.y=40.6;tower.add(roof);
-  const house=new THREE.Mesh(new THREE.BoxGeometry(14,7,9),new THREE.MeshLambertMaterial({color:0x1c2226}));house.position.set(14,8,8);tower.add(house);
-  const win=new THREE.Mesh(new THREE.PlaneGeometry(1.6,1.6),new THREE.MeshBasicMaterial({color:0xffb75a}));win.position.set(10,8.5,12.55);tower.add(win);
-  const lightPos=new THREE.Vector3(LH.x,LH.y+3.6,LH.z);
+  const prof=[];for(let i=0;i<=8;i++){const v=i/8;prof.push(new THREE.Vector2(1.7+0.25*Math.sin(v*Math.PI),11.4+v*2.6))}
+  add(new THREE.LatheGeometry(prof,20),lanternMat,0,0,0);
+  for(let k=0;k<8;k++){const a=k/8*Math.PI*2;const b=add(new THREE.CylinderGeometry(0.06,0.06,2.6,4),iron,1.97*Math.cos(a),12.7,1.97*Math.sin(a));b.rotation.y=-a}
+  const mid=add(new THREE.TorusGeometry(1.96,0.06,4,24),iron,0,12.7,0);mid.rotation.x=Math.PI/2;
+  // kuppel og høy pipe med kule og lynavleder
+  add(new THREE.CylinderGeometry(2.15,2.15,0.2,20),iron,0,14.05,0);
+  const dome=add(new THREE.SphereGeometry(2.1,20,8,0,Math.PI*2,0,Math.PI/2),iron,0,14.1,0);dome.scale.y=0.55;
+  add(new THREE.CylinderGeometry(0.33,0.38,3.4,10),iron,0,16.8,0);
+  add(new THREE.SphereGeometry(0.55,12,8),iron,0,18.8,0);
+  add(new THREE.CylinderGeometry(0.03,0.03,2.4,4),iron,0,20.5,0);
+  // fyrvokterboligen med saltak, gavlen mot tårnet
+  const hMat=new THREE.MeshLambertMaterial({color:0x2a3034,emissive:0x0c0f11});
+  add(new THREE.BoxGeometry(14,5,8),hMat,8.5,2.5,-1.5);
+  const gable=new THREE.Shape();gable.moveTo(-4.4,0);gable.lineTo(0,4.2);gable.lineTo(4.4,0);gable.lineTo(-4.4,0);
+  const roofG=new THREE.ExtrudeGeometry(gable,{depth:14.6,bevelEnabled:false});roofG.rotateY(Math.PI/2);
+  add(roofG,new THREE.MeshLambertMaterial({color:0x14181b}),1.2,5,-1.5);
+  add(new THREE.BoxGeometry(0.9,1.6,0.9),dark,5.5,9.4,-1.5);add(new THREE.BoxGeometry(1.2,1.6,1.2),dark,10.5,9.4,-1.5);
+  const winMat=new THREE.MeshBasicMaterial({color:0xffb75a});
+  for(const x of [9,12.5])add(new THREE.PlaneGeometry(1,1.5),winMat,x,2.8,2.52)
+  add(new THREE.CylinderGeometry(0.06,0.08,15,4),dark,17.5,7.5,3);
+  const lightPos=new THREE.Vector3(LH.x,6+1.8*12.7,LH.z);
   // glød
   const gTex=glowTexture();
   const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:gTex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,fog:true}));

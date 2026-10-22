@@ -9,7 +9,8 @@
 - [ ] Test kiosken på selve storskjermen på fyret: lesbarhet på avstand, ytelse i 3D-scenen og at QR-koden lar seg skanne.
 - [ ] Test på noen eldre mobiler (3D-scenen er tyngst).
 - [ ] Gå gjennom kapitlene og tone ned historien etter ca. 1920 (se beslutningen om tidsramme nedenfor).
-- [ ] Sjekk fresnellinsen i kapittel 2: Er prismene snudd riktig vei, innover eller utover? Sammenlign med kildebildene.
+- [x] Sjekk fresnellinsen i kapittel 2: Er prismene snudd riktig vei, innover eller utover? Sammenlign med kildebildene.
+  - **Sjekket:** Kildebildene viser ikke linsen, så sjekken bygger på hvordan Fresnel-linser virker. Ringene i trommelen var snudd innover mot lampa og var brattest på midten. Nå har trommelen flat side mot lampa og ringer utover som blir brattere mot kantene. Prismene over og under var riktige: lyset går inn på innsiden, speiles i den skrå baksiden og går ut gjennom den loddrette yttersiden. Bør bekreftes mot et bilde av selve linsen på Obrestad.
 - [ ] Sjekk nøye hvor langt Obrestad fyr var synlig. Rekkevidden i kapittel 1 ser kanskje ikke helt riktig ut. Finn lyshøyden slik den var fram til ca. 1920, og vis lysvidden både med høyden fra 1920 og med dagens høyde (2026).
 
 ## Innhold som mangler
@@ -29,6 +30,7 @@
 - [ ] Knappen «Hva kostet det?» som setter 17 398,80 franc i perspektiv (for eksempel årslønner for en fyrvokter). Krever en historisk kilde.
 - [ ] Eget domene og QR-skilt på fyret.
 - [ ] Senere: Gjør fyret i 3D-scenen og illustrasjonene mer likt det originale fra 1873 (tårn, lyktehus og farger). Bygger på bildene i `docs/kilder/`. Ikke prioritert nå.
+  - Startsiden og 3D-scenen i kapittel 1 viser nå det originale fyret. Lyskarakteren og lysvidden i kapittel 1 bygger fortsatt på dagens fyr.
 
 ## Beslutninger så langt
 

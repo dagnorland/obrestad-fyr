@@ -229,9 +229,13 @@ function LightView({t}){
   const {rays,pct}=useMemo(()=>trace(mode,prisms,refl,dx),[mode,prisms,refl,dx]);
   const mm=Math.round(dx*MMPX);const amm=Math.abs(mm);
   const msg=amm<=7?['good',t.inFocus]:amm<=26?['',t.nearFocus]:['bad',t.offFocus];
-  let lens='M'+(LX+8)+' '+(CY-HL)+' L'+(LX+8)+' '+(CY+HL);
-  for(let y=HL;y>=-HL;y-=18){const dep=4+10*(1-Math.abs(y)/HL);lens+=` L${LX-dep} ${CY+y} L${LX+2} ${CY+y-14}`}
-  lens+='Z';
+  // trommelen: flat side mot lampa, ringene vender utover og blir brattere mot kantene
+  const NR=17,RH=2*HL/NR,LB=6;let lens=`M${LX} ${CY-HL}`;
+  for(let k=0;k<NR;k++){const y0=-HL+k*RH,y1=y0+RH,yc=(y0+y1)/2;
+    if(Math.abs(yc)<RH/2){for(let i=0;i<=6;i++){const y=y0+i*RH/6,u=(y-yc)/(RH/2);lens+=` L${(LX+LB+8*(1-u*u)).toFixed(1)} ${(CY+y).toFixed(1)}`}continue}
+    const tilt=Math.min(40*D,2*Math.atan(Math.abs(yc)/F)),drop=Math.min(16,RH*Math.tan(tilt));
+    lens+=yc<0?` L${LX+LB} ${(CY+y0).toFixed(1)} L${(LX+LB+drop).toFixed(1)} ${(CY+y1).toFixed(1)}`:` L${(LX+LB+drop).toFixed(1)} ${(CY+y0).toFixed(1)} L${LX+LB} ${(CY+y1).toFixed(1)}`}
+  lens+=` L${LX} ${CY+HL}Z`;
   const prismTris=[];if(prisms&&mode==='new')for(let a=50;a<=80;a+=6)[-1,1].forEach(sg=>{const th=sg*a*D;const x=FX+RP*Math.cos(th),y=CY+RP*Math.sin(th);
     prismTris.push(html`<path key=${a+'_'+sg} d=${`M${x-9} ${y} L${x+7} ${y-7*sg} L${x+7} ${y+9*sg}Z`} fill="#bfe6f2" fillOpacity=".55" stroke="#7fcbe4" strokeWidth="1"/>`)});
   let par='';for(let a=80;a<=280;a+=4){const th=a*D;const r=2*FM/(1-Math.cos(th));par+=(a===80?'M':'L')+(FX+r*Math.cos(th)).toFixed(1)+' '+(CY+r*Math.sin(th)).toFixed(1)}
