@@ -26,6 +26,10 @@ nb:{loc:'nb-NO',chapter:'Kapittel 1: Ute på havet',tabs:['Om bord','Kartet','Hv
  res:'Lyset kan sees inntil',nm:'nautiske mil',km:'km',formula:'Formelen sjøfolk bruker',
  rNote:'Lysstyrken setter også en grense. I klart vær rekker dagens fyr omtrent 18 nautiske mil. I regn og tåke blir det kortere.',
  horizon:'Horisonten',boat:'Båten',light:'Fyret',beyond:'Lenger ut enn dette forsvinner lyset bak horisonten.',
+ dist:'Fyret er omtrent 10 nautiske mil (18 km) unna.',
+ fixLbl:'Fast lys',flLbl:'Blink',cd:'candela',stronger:'nesten 12 ganger sterkere',statsNote:'Lysstyrke for dagens fyr',
+ seeShort:'Du ser fyret',farShort:'For langt unna',darkShort:'Mørk sektor',fromLight:'fra fyret',
+ segL:'Fyr → horisont',segE:'Horisont → båt',exag:'Høydene er forstørret. I virkeligheten er jorden mye flatere enn på tegningen.',
  kiosk:'Utforsk selv på mobilen: skann QR-koden ved skjermen.'},
 de:{loc:'de-DE',chapter:'Kapitel 1: Draußen auf dem Meer',tabs:['An Bord','Die Karte','Wie weit?'],
  intro:'Du stehst an Deck vor der Küste von Jæren, an einem dunklen Herbstabend. Schau zum Land: Der Leuchtturm Obrestad leuchtet fest, und alle 30 Sekunden kommt ein kräftiger Blitz.',
@@ -47,6 +51,10 @@ de:{loc:'de-DE',chapter:'Kapitel 1: Draußen auf dem Meer',tabs:['An Bord','Die 
  res:'Das Licht ist sichtbar bis zu',nm:'Seemeilen',km:'km',formula:'Die Formel der Seeleute',
  rNote:'Auch die Lichtstärke setzt eine Grenze. Bei klarem Wetter reicht der heutige Leuchtturm etwa 18 Seemeilen. Bei Regen und Nebel weniger.',
  horizon:'Horizont',boat:'Boot',light:'Leuchtturm',beyond:'Weiter draußen verschwindet das Licht hinter dem Horizont.',
+ dist:'Der Leuchtturm ist etwa 10 Seemeilen (18 km) entfernt.',
+ fixLbl:'Festfeuer',flLbl:'Blitz',cd:'Candela',stronger:'fast 12-mal so stark',statsNote:'Lichtstärke des heutigen Leuchtturms',
+ seeShort:'Du siehst den Leuchtturm',farShort:'Zu weit weg',darkShort:'Dunkler Sektor',fromLight:'vom Leuchtturm',
+ segL:'Turm → Horizont',segE:'Horizont → Boot',exag:'Die Höhen sind vergrößert. In Wirklichkeit ist die Erde viel flacher als in der Zeichnung.',
  kiosk:'Selbst entdecken auf dem Handy: Scanne den QR-Code neben dem Bildschirm.'},
 en:{loc:'en-GB',chapter:'Chapter 1: Out at sea',tabs:['On board','The map','How far?'],
  intro:'You’re on deck off the coast of Jæren on a dark autumn evening. Look towards land: Obrestad lighthouse shows a steady light, and every 30 seconds comes a strong flash.',
@@ -68,10 +76,15 @@ en:{loc:'en-GB',chapter:'Chapter 1: Out at sea',tabs:['On board','The map','How 
  res:'The light can be seen up to',nm:'nautical miles',km:'km',formula:'The formula sailors use',
  rNote:'The strength of the light also sets a limit. In clear weather today’s lighthouse reaches about 18 nautical miles. Less in rain and fog.',
  horizon:'Horizon',boat:'Boat',light:'Lighthouse',beyond:'Further out than this, the light sinks below the horizon.',
+ dist:'The lighthouse is about 10 nautical miles (18 km) away.',
+ fixLbl:'Fixed light',flLbl:'Flash',cd:'candela',stronger:'almost 12 times stronger',statsNote:'Light intensity of today’s lighthouse',
+ seeShort:'You can see the lighthouse',farShort:'Too far away',darkShort:'Dark sector',fromLight:'from the lighthouse',
+ segL:'Light → horizon',segE:'Horizon → boat',exag:'Heights are enlarged. In reality the Earth is much flatter than in the drawing.',
  kiosk:'Explore on your phone: scan the QR code next to the screen.'}
 };
 const fmt=(n,loc,d=1)=>n.toLocaleString(loc,{minimumFractionDigits:d,maximumFractionDigits:d});
 const LUM={clear:18,rain:9,fog:1};
+const CD_FIX=129900,CD_FL=1526000; // dagens fyr, candela
 const geoRange=(h,e)=>2.08*(Math.sqrt(h)+Math.sqrt(e));
 
 /* ---------- lysmønstre ---------- */
@@ -352,12 +365,17 @@ function BoatView({t,active,weather,setWeather,sound,toggleSound}){
     if(p==='obrestad'){clock.offset+=(30-(((now())%30)+30)%30)-6} setGame({pat:p,pick:null})};
   return html`<div className="view" style=${{visibility:active?'visible':'hidden'}} aria-hidden=${!active}>
     <div className="scene" ref=${host}></div>
-    ${!game&&html`<div className="intro"><p>${t.intro}</p></div>`}
+    ${!game&&html`<div className="intro"><p>${t.intro}</p><p className="dist">${t.dist}</p></div>`}
     ${weather==='fog'&&html`<div className="fognote" role="status">${t.fog}</div>`}
     <div className="dock"><div className="panel">
       ${!game?html`
         <div className="prow">
           <div className="kenn"><small>${t.kennLbl}</small><b>${t.kenn}</b></div>
+          <div className="stats" title=${t.statsNote}>
+            <div><small>${t.fixLbl}</small><b>${CD_FIX.toLocaleString(t.loc)}</b> <span>${t.cd}</span></div>
+            <div className="fl"><small>${t.flLbl}</small><b>${CD_FL.toLocaleString(t.loc)}</b> <span>${t.cd}</span><em>${t.stronger}</em></div>
+            <small className="snote">${t.statsNote}</small>
+          </div>
           <div className="curve"><small>${t.curve}</small><canvas ref=${curve} aria-hidden="true"></canvas></div>
         </div>
         <div className="prow">
@@ -423,10 +441,14 @@ function MapView({t,active,weather,setWeather}){
   const dx=boat[0]-OB[0],dy=boat[1]-OB[1],dist=Math.hypot(dx,dy);
   let bear=Math.atan2(dx,-dy)*180/Math.PI;if(bear<0)bear+=360;
   const lit=bear>=SEC0||bear<=SEC1-360;
-  const status=!lit?['no',t.dark]:dist>range?['no',t.far]:['ok',t.vis.replace('{d}',fmt(dist,t.loc))];
+  const status=!lit?['no',t.dark,t.darkShort]:dist>range?['no',t.far,t.farShort]:['ok',t.vis.replace('{d}',fmt(dist,t.loc)),t.seeShort];
   const seaC=mix('9cc0cc','081822',dusk),landC=mix('d8cfb3','10181b',dusk),lineC=mix('6d8c96','2c4652',dusk),txtC=dusk>0.5?'#9fb6c1':'#2f4a56';
   return html`<div className="view mapwrap">
     <div className="mapbox" style=${{background:seaC}}>
+      <div className=${'mapinfo '+status[0]} aria-hidden="true">
+        <b>${status[2]}</b>
+        <div><span className="num">${fmt(dist,t.loc)}</span> <span>${t.nm} ${t.fromLight}</span></div>
+      </div>
       <svg ref=${svg} viewBox=${`0 0 ${MW} ${MH}`} preserveAspectRatio="xMidYMid meet" onPointerMove=${onMove} onPointerUp=${onUp} onPointerLeave=${onUp} role="img" aria-label="Kart">
         <defs>
           <radialGradient id="sg" cx=${OB[0]} cy=${OB[1]} r=${range} gradientUnits="userSpaceOnUse">
@@ -449,9 +471,11 @@ function MapView({t,active,weather,setWeather}){
         </g>
         <g className="boat-handle" tabIndex="0" role="slider" aria-label=${t.boat} aria-valuetext=${status[1]} onKeyDown=${onKey} onPointerDown=${onDown} transform=${`translate(${boat[0]} ${boat[1]})`}>
           <circle r="2.2" fill="transparent"/>
+          <circle className="focusring" r="2" fill="none" stroke="#7cc4ff" strokeWidth="0.18"/>
           <path d="M-1.2 0.1 L1.2 0.1 L0.85 0.75 L-0.85 0.75Z" fill=${status[0]==='ok'?'#8fe0ae':'#e6eef0'} stroke="#081822" strokeWidth="0.1"/>
           <path d="M0 -1.6 L0 0.1 M0.1 -1.5 L1.0 -0.05 L0.1 -0.05Z" fill=${status[0]==='ok'?'#8fe0ae':'#e6eef0'} stroke="#081822" strokeWidth="0.08"/>
           ${status[0]==='ok'&&html`<line x1="0" y1="0" x2=${OB[0]-boat[0]} y2=${OB[1]-boat[1]} stroke="#ffc35a" strokeWidth="0.1" strokeDasharray="0.4 0.4" opacity="0.8"/>`}
+          <text className="boatnm" y=${boat[1]>MH-3?-2.2:2.3} textAnchor="middle" fontSize="1.3" fontWeight="700" fontFamily="Barlow,sans-serif">${fmt(dist,t.loc)} nm</text>
         </g>
       </svg>
     </div>
@@ -477,7 +501,8 @@ function RangeView({t,active}){
   useEffect(()=>{if(!KIOSK||!active)return;let r,s=performance.now();const loop=()=>{r=requestAnimationFrame(loop);const k=(performance.now()-s)/1000;
     setE(Math.round((1.5+13.5*(0.5-0.5*Math.cos(k/2.4)))*2)/2)};loop();return()=>cancelAnimationFrame(r)},[active]);
   const dl=2.08*Math.sqrt(h),de=2.08*Math.sqrt(e),d=dl+de;
-  const VW=680,VH=300,x0=56,k=560/30,Y0=118,sy=2.6,a=sy/Math.pow(2.08*k,2);
+  // sy: piksler per meter høyde. Lav verdi gir flat jord, men høydene må da forstørres mindre.
+  const VW=680,VH=250,x0=56,k=560/30,Y0=104,sy=1.1,a=sy/Math.pow(2.08*k,2),AX=VH-22;
   const xh=x0+dl*k,xb=x0+d*k;
   const s=x=>Y0+a*Math.pow(x-xh,2);
   let seaP='M0 '+VH;for(let x=0;x<=VW;x+=8)seaP+=` L${x} ${Math.min(VH+5,s(x)).toFixed(1)}`;seaP+=` L${VW} ${VH}Z`;
@@ -495,22 +520,31 @@ function RangeView({t,active}){
       <path d=${seaP} fill="url(#nsea)"/>
       <path d=${crest} fill="none" stroke="#5e8a9a" strokeWidth="1.2"/>
       <line x1=${x0} y1=${Y0} x2=${Math.min(VW,xb+60)} y2=${Y0} stroke="#ffc35a" strokeWidth="2" strokeDasharray="6 5" opacity="0.9"/>
+      <g fontFamily="Barlow,sans-serif" fontSize="12" fontWeight="700" textAnchor="middle">
+        <text x=${(x0+xh)/2} y=${Y0-8} fill="#ffd27a">${fmt(dl,t.loc)} nm</text>
+        <text x=${(xh+xb)/2} y=${Y0-8} fill="#e6eef0">${fmt(de,t.loc)} nm</text>
+      </g>
+      <g fontFamily="Barlow,sans-serif" fontSize="11" fill="#9fb6c1">
+        <line x1=${x0} y1=${AX} x2=${x0+30*k} y2=${AX} stroke="#5e8a9a"/>
+        ${[0,5,10,15,20,25,30].map(n=>html`<g key=${n}><line x1=${x0+n*k} y1=${AX-4} x2=${x0+n*k} y2=${AX+4} stroke="#5e8a9a"/>
+          <text x=${x0+n*k} y=${AX+16} textAnchor="middle">${n}${n===30?' nm':''}</text></g>`)}
+      </g>
       <g>
         <rect x=${x0-5} y=${Y0+4} width="10" height=${Math.max(0,baseL-Y0-4)} fill="#d7dcdf"/>
         <rect x=${x0-5} y=${Y0+4+(baseL-Y0-4)*0.35} width="10" height=${(baseL-Y0-4)*0.12} fill="#b2382f"/>
         <rect x=${x0-6} y=${Y0-6} width="12" height="10" rx="2" fill="#ffd27a"/>
         <circle cx=${x0} cy=${Y0} r="14" fill="#ffc35a" opacity="0.25"/>
-        <text x=${x0} y=${Math.min(VH-8,baseL+16)} textAnchor="middle" fontSize="12" fill="#e6eef0" fontFamily="Barlow,sans-serif">${t.light}</text>
+        <text x=${x0} y=${Math.min(AX-10,baseL+16)} textAnchor="middle" fontSize="12" fill="#e6eef0" fontFamily="Barlow,sans-serif">${t.light}</text>
       </g>
       <g>
         <line x1=${xh} y1=${Y0-10} x2=${xh} y2=${Y0+10} stroke="#9fb6c1" strokeWidth="1"/>
-        <text x=${xh} y=${Y0-16} textAnchor="middle" fontSize="12" fill="#9fb6c1" fontFamily="Barlow,sans-serif">${t.horizon}</text>
+        <text x=${xh} y=${Y0-28} textAnchor="middle" fontSize="12" fill="#9fb6c1" fontFamily="Barlow,sans-serif">${t.horizon}</text>
       </g>
       <g>
         <path d=${`M${xb-16} ${baseB-2} L${xb+16} ${baseB-2} L${xb+11} ${baseB+6} L${xb-11} ${baseB+6}Z`} fill="#c7a46a"/>
         <line x1=${xb} y1=${baseB-2} x2=${xb} y2=${Y0} stroke="#c7a46a" strokeWidth="2"/>
-        <circle cx=${xb} cy=${Y0} r="5" fill="#e6eef0"/>
-        <text x=${xb} y=${Math.min(VH-8,baseB+22)} textAnchor="middle" fontSize="12" fill="#e6eef0" fontFamily="Barlow,sans-serif">${t.boat}</text>
+        <circle cx=${xb} cy=${Y0} r="4" fill="#e6eef0"/>
+        <text x=${xb} y=${Math.min(AX-10,baseB+22)} textAnchor="middle" fontSize="12" fill="#e6eef0" fontFamily="Barlow,sans-serif">${t.boat}</text>
       </g>
     </svg></div>
     <div className="rgrid">
@@ -529,6 +563,14 @@ function RangeView({t,active}){
         <div><span className="num">${fmt(d,t.loc)}</span> <span className="unit">${t.nm}</span></div>
         <div className="km">≈ ${fmt(d*1.852,t.loc,0)} ${t.km}</div>
       </div>
+    </div>
+    <p className="note" style=${{marginTop:8,fontSize:13}}>${t.exag}</p>
+    <div className="segs">
+      <span><i style=${{background:'#ffd27a'}}></i>${t.segL}: <b>${fmt(dl,t.loc)} ${t.nm}</b></span>
+      <span>+</span>
+      <span><i style=${{background:'#e6eef0'}}></i>${t.segE}: <b>${fmt(de,t.loc)} ${t.nm}</b></span>
+      <span>=</span>
+      <span><b>${fmt(d,t.loc)} ${t.nm}</b></span>
     </div>
     <p className="note" style=${{marginTop:14}}>${t.beyond}</p>
     <div className="formula">${t.formula}<code>d ≈ 2,08 × (√${t.lightH.toLowerCase()} + √${t.eyeH.toLowerCase()})</code></div>

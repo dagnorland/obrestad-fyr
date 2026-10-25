@@ -36,7 +36,9 @@ nb:{loc:'nb-NO',chapter:'Kapittel 2: Optikeren og urmakeren',tabs:['Folkene','Ly
  regLbl:'Regulator',reg:{none:'Ingen',escape:'Ankergang (1823)',fly:'Flyvende pendel (1825)'},
  teeth:'Tenner på drivhjulet',panels:'Blinkpaneler',speed:'Fart',wind:'Vind opp loddet',
  calc:'Beregnet: blink hvert {s} sekund',measured:'Målt mellom blinkene',weight:'Loddet',jerk:'Rykk i glasset',
- challenge:'Utfordring: få blinket til å komme hvert 30. sekund. Det finnes to løsninger.',
+ challenge:'Utfordring: få blinket til å komme hvert 30. sekund. Det finnes flere løsninger.',
+ obBtn:'Vis Obrestads oppsett',obTag:'Obrestad',obMatch:'Akkurat slik er det på Obrestad.',
+ obNote:'På Obrestad står linsen fast. To blinkpaneler går rundt den én gang i minuttet og gir blink hvert 30. sekund.',
  success:'Du har gjort urmakerens jobb: 30 sekunder, blink etter blink.',
  noneMsg:'Uten regulator drar loddet maskinen fortere og fortere. Blinkene kommer tettere, og ingen sjømann ville kjent igjen fyret.',
  escMsg:'Ankergangen holder takten, men linsen går i rykk. Hvert rykk sliter på et glassapparat som veier flere hundre kilo.',
@@ -74,7 +76,9 @@ de:{loc:'de-DE',chapter:'Kapitel 2: Der Optiker und der Uhrmacher',tabs:['Die Me
  regLbl:'Regler',reg:{none:'Keiner',escape:'Ankerhemmung (1823)',fly:'Fliegendes Pendel (1825)'},
  teeth:'Zähne am Antriebsrad',panels:'Blitzpaneele',speed:'Tempo',wind:'Gewicht aufziehen',
  calc:'Berechnet: Blitz alle {s} Sekunden',measured:'Gemessen zwischen den Blitzen',weight:'Gewicht',jerk:'Rucke im Glas',
- challenge:'Aufgabe: Lass den Blitz alle 30 Sekunden kommen. Es gibt zwei Lösungen.',
+ challenge:'Aufgabe: Lass den Blitz alle 30 Sekunden kommen. Es gibt mehrere Lösungen.',
+ obBtn:'Obrestads Einstellung zeigen',obTag:'Obrestad',obMatch:'Genau so ist es in Obrestad.',
+ obNote:'In Obrestad steht die Linse fest. Zwei Blitzpaneele drehen sich einmal pro Minute um sie und geben alle 30 Sekunden einen Blitz.',
  success:'Du hast die Arbeit des Uhrmachers gemacht: 30 Sekunden, Blitz für Blitz.',
  noneMsg:'Ohne Regler zieht das Gewicht die Maschine immer schneller. Die Blitze kommen dichter, und kein Seemann würde den Leuchtturm erkennen.',
  escMsg:'Die Ankerhemmung hält den Takt, aber die Linse bewegt sich ruckartig. Jeder Ruck belastet einen Glasapparat von mehreren hundert Kilo.',
@@ -112,7 +116,9 @@ en:{loc:'en-GB',chapter:'Chapter 2: The optician and the clockmaker',tabs:['The 
  regLbl:'Regulator',reg:{none:'None',escape:'Anchor escapement (1823)',fly:'Flying pendulum (1825)'},
  teeth:'Teeth on the drive wheel',panels:'Flash panels',speed:'Speed',wind:'Wind up the weight',
  calc:'Calculated: a flash every {s} seconds',measured:'Measured between flashes',weight:'Weight',jerk:'Jolts in the glass',
- challenge:'Challenge: make the flash come every 30 seconds. There are two solutions.',
+ challenge:'Challenge: make the flash come every 30 seconds. There’s more than one solution.',
+ obBtn:'Show Obrestad’s setup',obTag:'Obrestad',obMatch:'That’s exactly how it is at Obrestad.',
+ obNote:'At Obrestad the lens stands still. Two flash panels turn around it once a minute, giving a flash every 30 seconds.',
  success:'You’ve done the clockmaker’s job: 30 seconds, flash after flash.',
  noneMsg:'Without a regulator the weight drives the machine faster and faster. The flashes come closer together, and no sailor would recognise the lighthouse.',
  escMsg:'The escapement keeps time, but the lens moves in jerks. Every jolt strains a glass apparatus weighing several hundred kilos.',
@@ -277,15 +283,19 @@ function LightView({t}){
 }
 
 /* ---------------- Urverket ---------------- */
+// Obrestad: fast trommellinse med to loddrette blinkpaneler utenpå, én omdreining i minuttet
+const OB_TEETH=24,OB_PANELS=2;
 function ClockView({t}){
-  const [teeth,setTeeth]=useState(16),[panels,setPanels]=useState(4),[reg,setReg]=useState('fly'),[speed,setSpeed]=useState(1);
+  const [teeth,setTeeth]=useState(OB_TEETH),[panels,setPanels]=useState(OB_PANELS),[reg,setReg]=useState('fly'),[speed,setSpeed]=useState(1);
   const [ivals,setIvals]=useState([]),[empty,setEmpty]=useState(false);
   const R=useRef({phi:0,omega:0,h:1,tSim:0,last:null,count:0,esc:0,wind:false,jerk:0});
   const top=useRef(null),drumG=useRef(null),pinG=useRef(null),wt=useRef(null),cable=useRef(null),ship=useRef(null),gov=useRef([]),wbar=useRef(null),jbar=useRef(null),anchor=useRef(null);
   const Trot=120*12/teeth,interval=Trot/panels,w0=2*Math.PI/Trot;
   const cfg=useRef({});cfg.current={w0,panels,reg,speed,teeth};
   useEffect(()=>{setIvals([]);R.current.last=null},[teeth,panels,reg]);
-  useEffect(()=>{if(KIOSK){setTeeth(12);setPanels(4);setReg('fly');setSpeed(2)}},[]);
+  useEffect(()=>{if(KIOSK)setSpeed(2)},[]);
+  const setObrestad=()=>{setTeeth(OB_TEETH);setPanels(OB_PANELS);setReg('fly')};
+  const isOb=teeth===OB_TEETH&&panels===OB_PANELS&&reg==='fly';
   useEffect(()=>{let raf,lt=performance.now();
     const loop=()=>{raf=requestAnimationFrame(loop);const n=performance.now();let dt=Math.min(0.05,(n-lt)/1000)*cfg.current.speed;lt=n;
       const s=R.current,c=cfg.current;
@@ -357,19 +367,21 @@ function ClockView({t}){
             <path d="M268 166 L296 166 L292 174 L272 174Z" fill="#c7a46a"/>
           </svg><div className="cap">${t.topCap}</div></div>
         </div>
+        <p className="note" style=${{fontSize:14,marginTop:8}}>${t.obNote}</p>
       </div>
       <div>
-        <p className="note" style=${{fontWeight:600,color:'var(--text)',marginBottom:12}}>${t.challenge}</p>
+        <p className="note" style=${{fontWeight:600,color:'var(--text)',marginBottom:8}}>${t.challenge}</p>
+        <button className="btn ghost" style=${{marginBottom:12}} disabled=${isOb} onClick=${setObrestad}>${t.obBtn}</button>
         <div className="ctl"><div className="lab">${t.teeth}<span>${teeth}</span></div>
-          <div className="seg" role="group">${[8,12,16,24].map(v=>html`<button key=${v} aria-pressed=${teeth===v} onClick=${()=>setTeeth(v)}>${v}</button>`)}</div></div>
+          <div className="seg" role="group">${[8,12,16,24].map(v=>html`<button key=${v} aria-pressed=${teeth===v} onClick=${()=>setTeeth(v)}>${v}${v===OB_TEETH&&html`<small className="obtag">${t.obTag}</small>`}</button>`)}</div></div>
         <div className="ctl"><div className="lab">${t.panels}<span>${panels}</span></div>
-          <div className="seg" role="group">${[2,4,8].map(v=>html`<button key=${v} aria-pressed=${panels===v} onClick=${()=>setPanels(v)}>${v}</button>`)}</div></div>
+          <div className="seg" role="group">${[2,3,4,8].map(v=>html`<button key=${v} aria-pressed=${panels===v} onClick=${()=>setPanels(v)}>${v}${v===OB_PANELS&&html`<small className="obtag">${t.obTag}</small>`}</button>`)}</div></div>
         <div className="ctl"><div className="lab">${t.regLbl}</div>
           <div className="seg" role="group">${['none','escape','fly'].map(v=>html`<button key=${v} aria-pressed=${reg===v} onClick=${()=>setReg(v)}>${t.reg[v]}</button>`)}</div></div>
         <p style=${{fontWeight:700,margin:'4px 0 8px'}}>${t.calc.replace('{s}',fmt(interval,t.loc,interval%1?1:0))}</p>
         <div className="lab" style=${{fontSize:14,fontWeight:600,marginBottom:6}}>${t.measured}</div>
         <div className="ivals" aria-live="polite">${ivals.map((v,i)=>html`<span key=${i} className=${Math.abs(v-30)<0.6?'ok':(Math.abs(v-interval)>1?'off':'')}>${fmt(v,t.loc)} s</span>`)}</div>
-        ${okMeasured&&html`<div className="success" style=${{marginTop:12}}>${t.success}</div>`}
+        ${okMeasured&&html`<div className="success" style=${{marginTop:12}}>${t.success}${isOb&&' '+t.obMatch}</div>`}
         <p className=${'msg '+regMsg[0]} style=${{marginTop:12}}>${regMsg[1]}</p>
         <div className="lab" style=${{fontSize:14,fontWeight:600}}>${t.weight}</div>
         <div className="weight"><i ref=${wbar}></i></div>

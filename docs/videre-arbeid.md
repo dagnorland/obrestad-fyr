@@ -4,8 +4,9 @@
 
 ## Bør rettes før åpning
 
-- [ ] Urverket i kapittel 2 bruker fire blinkpaneler. Fakturaen tyder på tre («3 lentilles verticales»), altså én omdreining på 90 sekunder. Legg til 3 som valg og bruk det som standard.
+- [x] Urverket i kapittel 2 bruker fire blinkpaneler. Fakturaen tyder på tre («3 lentilles verticales»), altså én omdreining på 90 sekunder. Legg til 3 som valg og bruk det som standard.
   - **Merknad:** Vi mener det er 2 blinkpaneler, ikke 3. Avklar dette før urverket endres.
+  - **Gjort:** Urverket starter nå med 2 paneler og 24 tenner (blink hvert 30. s), og har en knapp for Obrestads oppsett. 3 paneler finnes som valg. Bør fortsatt bekreftes mot det ekte apparatet (se `kilder/lyset/`).
 - [ ] Test kiosken på selve storskjermen på fyret: lesbarhet på avstand, ytelse i 3D-scenen og at QR-koden lar seg skanne.
 - [ ] Test på noen eldre mobiler (3D-scenen er tyngst).
 - [ ] Gå gjennom kapitlene og tone ned historien etter ca. 1920 (se beslutningen om tidsramme nedenfor).

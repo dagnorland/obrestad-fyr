@@ -5,9 +5,10 @@ Fakta som er brukt i løsningen, med kilde. Det som er usikkert eller er en tolk
 ## Fyret
 
 - Obrestad fyr ligger i Hå på Jæren og ble tent i 1873, for å varsle om den farlige Varhaugstranda. Tårnet ble bygd om i 1950. Hå kommune eier fyret i dag. Tåkesignalet kom i 1916. ([Store norske leksikon](https://snl.no/Obrestad_fyr))
-- Dagens fyr: lyshøyde 39 m, lysvidde 18 nautiske mil, kjennetegn fast lys med blink hvert 30. sekund. ([Wikipedia](https://en.wikipedia.org/wiki/Obrestad_Lighthouse)) Disse tallene gjelder dagens fyr, ikke nødvendigvis 1873.
+- Dagens fyr: lyshøyde 39 m, lysvidde 18 nautiske mil, kjennetegn fast lys med blink hvert 30. sekund. Lysstyrke: fast lys 129 900 candela, blink 1 526 000 candela (nesten 12 ganger sterkere). ([Wikipedia](https://en.wikipedia.org/wiki/Obrestad_Lighthouse)) Disse tallene gjelder dagens fyr, ikke nødvendigvis 1873. Lysstyrken vises på «Om bord» i kapittel 1.
+- Lykta i dag (bilder i `kilder/lyset/`, tatt i mai og september 2026): en fast trommellinse med vannrette ringer, og loddrette blinkpaneler («lentilles verticales») på et dreibart stativ utenpå. Skiltet på foten er merket «Henry-Lepaute, Constructeur, Paris», og messingrammen er stemplet «Henry-Lepaute». Vi har valgt **2 blinkpaneler**, én omdreining i minuttet, som gir blink hvert 30. sekund. Fakturaen nevner «3 lentilles verticales» (se `fakturaen.md`), så dette bør bekreftes.
 - Det første tårnet (1873–1950): rundt, lavt steintårn bygd inntil gavlen på fyrvokterboligen, med galleri på konsoller, avrundet lyktehus med sprosser, kuppel og en høy pipe med kule og lynavleder. Tegningen på startsiden og 3D-modellen i kapittel 1 bygger på de tre gamle fotografiene i `kilder/` (`obrestad-fyr-orginalt*.jpg`). Høyder og mål er anslått fra bildene.
-- Lysvidde-formelen i kapittel 1: d ≈ 2,08 × (√lyshøyde + √øyehøyde), i nautiske mil.
+- Lysvidde-formelen i kapittel 1: d ≈ 2,08 × (√lyshøyde + √øyehøyde), i nautiske mil. Tegningen i «Hvor langt?» har sterkt forstørrede høyder (ca. 1,1 px per meter mot ca. 19 px per nautisk mil), og det står i teksten.
 
 ## Optikeren
 
@@ -29,4 +30,5 @@ Fakta som er brukt i løsningen, med kilde. Det som er usikkert eller er en tolk
 - 3D-scenen i kapittel 1 viser tårnet fra 1873, men lyset blinker som dagens fyr. Tårnet er forstørret omtrent 1,8 ganger, slik at det synes fra båten.
 - Tåkesignalet er en syntetisk lyd.
 - Prosentene i strålelaben (kapittel 2) viser prinsippet og er ikke målinger.
-- Urverket i kapittel 2 bruker fire blinkpaneler som utgangspunkt. Fakturaen tyder på tre (se `fakturaen.md`).
+- Urverket i kapittel 2 starter med Obrestads oppsett: 2 blinkpaneler og 24 tenner på drivhjulet, som gir blink hvert 30. sekund. Antall tenner er en modell, ikke talt på det ekte urverket.
+- «Om bord» sier at fyret er omtrent 10 nautiske mil unna. Det er et valgt utgangspunkt for scenen, ikke målt.
